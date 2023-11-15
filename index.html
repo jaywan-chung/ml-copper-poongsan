@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="ann.js"></script>
+    <script type="text/javascript" src="poongsan-lann.js"></script>
+    <script>
+        window.onload = function() {
+            jcApp.startApp();
+        }
+    </script>
+    <title>Copper Alloy Property Predictor</title>
+</head>
+<body>
+    <section class="title">
+        <div class="container">
+            <h1>Machine Learning Model Predicting<br/>Strength and Conductivity of<br/>Copper alloys (POONGSAN data) ver.0.5a</h1>
+        </div>
+    </section>
+
+    <section class="section">
+        <p class="paragraph">
+            Our website provides a <span style="color: var(--main-color); font-weight: bold;">machine learning model</span> to predict Vickers hardness and electrical conductivity of copper alloys.
+            The purpose of this website is to demonstrate the excellence of our machine learning model.
+            Therefore, detailed information on the material synthesis process is omitted.
+            <br/>
+
+            You can also find a machine learning model for predicting thermoelectric properties of BiTe-based materials at <a href="https://jaywan-chung.github.io/ml-tep-BiTe/" target="_blank" style="color: var(--main-color); font-weight: bold;">our website</a>.
+        </p>
+        <p class="paragraph" style="margin-top: 20px;">
+            Please follow the steps below to predict the material properties.
+        </p>
+        <h2 class="subtitle">Step 1: Choose Material Composition and Producing Method</h2>
+        <p class="paragraph">
+            SHT stands for Solution Heat Treatment. In some methods, aging is performed twice (1st aging/aging). If 1st aging temp and time are zero, it means that aging is performed only once (no 1st aging).
+        </p>
+        <article class="option-group">
+            <h3 class="option-group-title">Scatter Plot: Experiments by Poongsan (Expt)</h3>
+            <div class="container">
+                <select name="rawdata", id="select-rawdata", size="6"></select>
+            </div>
+            <br>
+        </article>
+        <div class="container">
+            <article class="option-group">
+                <h3 class="option-group-title">Plot 1: Machine Prediction (Pred 1)</h3>
+                <form>
+                    <label class="param-label">Cu:</label>
+                    <label class="param-unit-label">&nbsp; &nbsp; &nbsp; Bal. [wt%]</label>
+
+                    <label class="param-label" for="plot1-Ni-composition">Ni:</label>
+                    <input class="param-input" type="text" id="plot1-Ni-composition">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot1-Co-composition">Co:</label>
+                    <input class="param-input" type="text" id="plot1-Co-composition">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot1-Si-composition">Si:</label>
+                    <input class="param-input" type="text" id="plot1-Si-composition">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot1-Cr-composition">Cr:</label>
+                    <input class="param-input" type="text" id="plot1-Cr-composition">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot1-Mn-composition">Mn:</label>
+                    <input class="param-input" type="text" id="plot1-Mn-composition">
+                    <label class="param-unit-label">[wt%]</label>
+                </form>
+                <form>
+                    <label class="param-label" for="plot1-SHT">SHT:</label>
+                    <select name="plot1-SHT" id="plot1-SHT">
+                        <option value="Pilot">Pilot</option>
+                        <option value="AP7">AP7</option>
+                    </select>    
+                </form>
+                <form>
+                    <label class="param-label" for="plot1-1st-aging-temp">1st Aging Temp:</label>
+                    <input class="param-input" type="text" id="plot1-1st-aging-temp">
+                    <label class="param-unit-label">[°C]</label>
+
+                    <label class="param-label" for="plot1-1st-aging-time">1st Aging Time:</label>
+                    <input class="param-input" type="text" id="plot1-1st-aging-time">
+                    <label class="param-unit-label">[min]</label>
+                </form>
+                <form>
+                    <label class="param-label" for="plot1-aging-temp">Aging Temp:</label>
+                    <input class="param-input" type="text" id="plot1-aging-temp">
+                    <label class="param-unit-label">[°C]</label>
+                </form>
+                <div class="button-container">
+                    <button type="button" id="select-rawdata-button-for-plot1">Select from Expt. Data</button>
+                </div>    
+            </article>
+            <article class="option-group">
+                <h3 class="option-group-title">Plot 2: Machine Prediction (Pred 2)</h3>
+                <form>
+                    <label class="param-label">Cu:</label>
+                    <label class="param-unit-label">&nbsp; &nbsp; &nbsp; Bal. [wt%]</label>
+
+                    <label class="param-label" for="plot2-Ni-composition">Ni:</label>
+                    <input class="param-input" type="text" id="plot2-Ni-composition" value="1.74">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot2-Co-composition">Co:</label>
+                    <input class="param-input" type="text" id="plot2-Co-composition" value="0.28">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot2-Si-composition">Si:</label>
+                    <input class="param-input" type="text" id="plot2-Si-composition" value="0.41">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot2-Cr-composition">Cr:</label>
+                    <input class="param-input" type="text" id="plot2-Cr-composition" value="0.13">
+                    <label class="param-unit-label">[wt%]</label>
+
+                    <label class="param-label" for="plot2-Mn-composition">Mn:</label>
+                    <input class="param-input" type="text" id="plot2-Mn-composition" value="0.06">
+                    <label class="param-unit-label">[wt%]</label>
+                </form>
+                <form>
+                    <label class="param-label" for="plot2-SHT">SHT:</label>
+                    <select name="plot1-SHT" id="plot2-SHT" value="Pilot">
+                        <option value="Pilot">Pilot</option>
+                        <option value="AP7">AP7</option>
+                    </select>    
+                </form>
+                <form>
+                    <label class="param-label" for="plot2-1st-aging-temp">1st Aging Temp:</label>
+                    <input class="param-input" type="text" id="plot2-1st-aging-temp" value="460">
+                    <label class="param-unit-label">[°C]</label>
+
+                    <label class="param-label" for="plot2-1st-aging-time">1st Aging Time:</label>
+                    <input class="param-input" type="text" id="plot2-1st-aging-time" value="180">
+                    <label class="param-unit-label">[min]</label>
+                </form>
+                <form>
+                    <label class="param-label" for="plot2-aging-temp">Aging Temp:</label>
+                    <input class="param-input" type="text" id="plot2-aging-temp" value="380">
+                    <label class="param-unit-label">[°C]</label>
+                </form>
+                <div class="button-container">
+                    <button type="button" id="select-rawdata-button-for-plot2">Select from Expt. Data</button>
+                </div>
+            </article>    
+            <article class="option-group">
+                <h3 class="option-group-title">Show Options</h3>
+                <form>
+                    <label class="param-label" for="show-data">Expt:</label>
+                    <input class="param-input" type="checkbox" id="show-data" name="show-data" checked />
+                </form>
+                <form>
+                    <label class="param-label" for="show-plot1">Pred 1:</label>
+                    <input class="param-input" type="checkbox" id="show-plot1" name="show-plot1" checked />
+                    <label class="param-label" for="show-plot1-ci">Pred 1 CI:</label>
+                    <input class="param-input" type="checkbox" id="show-plot1-ci" name="show-plot1-ci" checked />
+                </form>
+                <form>
+                    <label class="param-label" for="show-plot2">Pred 2:</label>
+                    <input class="param-input" type="checkbox" id="show-plot2" name="show-plot2" checked />
+                    <label class="param-label" for="show-plot2-ci">Pred 2 CI:</label>
+                    <input class="param-input" type="checkbox" id="show-plot2-ci" name="show-plot2-ci" checked />
+                </form>
+            </article>    
+        <div class="button-container">
+            <button type="button" class="selection-button" id="predict-mat-prop">Predict Hardness and Conductivity</button>
+        </div>
+    </section>
+
+    <div class="pagebreak"> </div>
+
+    <section class="section mat-prop-curve">
+        <h2 class="subtitle">Step 2: Check the Material Properties (Our Model)</h2>
+        <p class="paragraph">
+            In the plot, the filled region means <span style="color: var(--main-color); font-weight: bold;">95% CI (confidence interval) of the mean</span>.
+            However, because the synthesis is rarely repeated in this example, the CI has no significant meaning.
+        </p>
+        <h2 class="subtitle-print">Material Properties</h2>
+        <div class="chart-container" id="mat-prop-chart-container">
+            <article class="chart">
+                <div id="chart-hardness"></div>
+            </article>
+            <article class="chart">
+                <div id="chart-conductivity"></div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section mat-prop-curve">
+        <h2 class="subtitle">Compare: Prediction by a Standard Neural Network</h2>
+        <p class="paragraph">
+            The following shows a prediction by a fully connected neural network that has a similar size to our model (about 72,000 weights).
+        </p>
+        <h2 class="subtitle-print">Material Properties</h2>
+        <div class="chart-container" id="mat-prop-chart-container">
+            <article class="chart">
+                <div id="chart-fcnn-hardness"></div>
+            </article>
+            <article class="chart">
+                <div id="chart-fcnn-conductivity"></div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section methods">
+        <h2 class="subtitle">Methods</h2>
+        <!-- for credits -->
+        <ul class="paragraph">
+            <li>
+                Machine learning model: We use an <strong style="color: var(--main-color);">artificial neural network</strong>. We designed a special architecture for the prediction of physical property curves.
+                The details will be made public in the near future.
+            </li>
+            <li>
+                CI prediction: We use a method that estimates the mean and the variance of the material properties,
+                assuming that electrical resistivity, Seebeck coefficient, and thermal conductivity have an error of normal distribution.
+                For details, refer to <a href="https://ieeexplore.ieee.org/document/374138" target="_blank">Nix and Weigend (1994)</a>.    
+            </li>
+        </ul>
+    </section>
+
+    <section class="section contacts">
+        <h2 class="subtitle">Contacts</h2>
+        <!-- for credits -->
+        <ul class="paragraph">
+            <li>Dr. Jaywan Chung: jchung at keri.re.kr | Ext. 1631</li>
+            <li>Dr. Byungki Ryu: byungkiryu at keri.re.kr</li>
+            <li>Dr. Seung Zeon Han: szhan at kims.re.kr</li>
+        </ul>
+    </section>
+
+    <section class="section acknowledgements">
+        <h2 class="subtitle">Powered by</h2>
+        <!-- for credits -->
+        <ul class="paragraph">
+            <li><a href="https://fonts.google.com/" target="_blank">Google Fonts</a>: <em>Poppins</em> font</li>
+            <li><a href="https://developers.google.com/chart/" target="_blank">Google Charts</a>: Graphs</li>
+        </ul>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <section class="footer-keri-info">
+                <div class="left-col">
+                    <a href="https://www.keri.re.kr/html/en/" target="_blank">
+                        <img src="images/KERI-logo-with-eng.png">
+                    </a>
+                </div>
+                <div class="right-col">
+                    <p>Energy Conversion Research Center, Korea Electrotechnology Research Institute (KERI)</p>
+                    <address>12, Bulmosan-ro 10beon-gil, Seongsan-gu, Changwon-si, Gyeongsangnam-do, 51543 South Korea</address>
+                    <p>Copyright &copy; 2023 KERI. All rights reserved.</p>
+                </div>
+            </section>
+        </div>
+    </footer>
+
+</body>
+</html>
