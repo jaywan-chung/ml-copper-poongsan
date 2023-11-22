@@ -19,7 +19,7 @@
 <body>
     <section class="title">
         <div class="container">
-            <h1>Machine Learning Model Predicting<br/>Strength and Conductivity of<br/>Copper alloys (POONGSAN data) ver.0.5a</h1>
+            <h1>Machine Learning Model Predicting<br/>Strength and Conductivity of<br/>Copper alloys (POONGSAN data) ver.0.5b</h1>
         </div>
     </section>
 
@@ -39,16 +39,17 @@
         <p class="paragraph">
             SHT stands for Solution Heat Treatment. In some methods, aging is performed twice (1st aging/aging). If 1st aging temp and time are zero, it means that aging is performed only once (no 1st aging).
         </p>
-        <article class="option-group">
-            <h3 class="option-group-title">Scatter Plot: Experiments by Poongsan (Expt)</h3>
-            <div class="container">
-                <select name="rawdata", id="select-rawdata", size="6"></select>
-            </div>
-            <br>
-        </article>
         <div class="container">
-            <article class="option-group">
-                <h3 class="option-group-title">Plot 1: Machine Prediction (Pred 1)</h3>
+            <fieldset class="option-group" style="text-align: center;">
+                <legend class="option-group-title">Scatter Plot: Experiments by Poongsan (Expt)</legend>
+                <form>
+                    <select name="rawdata", id="select-rawdata", size="6"></select>
+                </form>
+            </fieldset>
+        </div>
+        <div class="container">
+            <fieldset class="option-group">
+                <legend class="option-group-title">Plot 1: Machine Prediction (Pred 1)</legend>
                 <form>
                     <label class="param-label">Cu:</label>
                     <label class="param-unit-label">&nbsp; &nbsp; &nbsp; Bal. [wt%]</label>
@@ -97,9 +98,9 @@
                 <div class="button-container">
                     <button type="button" id="select-rawdata-button-for-plot1">Select from Expt. Data</button>
                 </div>    
-            </article>
-            <article class="option-group">
-                <h3 class="option-group-title">Plot 2: Machine Prediction (Pred 2)</h3>
+            </fieldset>
+            <fieldset class="option-group">
+                <legend class="option-group-title">Plot 2: Machine Prediction (Pred 2)</legend>
                 <form>
                     <label class="param-label">Cu:</label>
                     <label class="param-unit-label">&nbsp; &nbsp; &nbsp; Bal. [wt%]</label>
@@ -126,8 +127,8 @@
                 </form>
                 <form>
                     <label class="param-label" for="plot2-SHT">SHT:</label>
-                    <select name="plot1-SHT" id="plot2-SHT" value="Pilot">
-                        <option value="Pilot">Pilot</option>
+                    <select name="plot1-SHT" id="plot2-SHT">
+                        <option value="Pilot" selected="selected">Pilot</option>
                         <option value="AP7">AP7</option>
                     </select>    
                 </form>
@@ -148,26 +149,32 @@
                 <div class="button-container">
                     <button type="button" id="select-rawdata-button-for-plot2">Select from Expt. Data</button>
                 </div>
-            </article>    
-            <article class="option-group">
-                <h3 class="option-group-title">Show Options</h3>
+            </fieldset>    
+            <fieldset class="option-group">
+                <legend class="option-group-title">Show Options</legend>
                 <form>
-                    <label class="param-label" for="show-data">Expt:</label>
-                    <input class="param-input" type="checkbox" id="show-data" name="show-data" checked />
+                    <fieldset style="padding: 0;">
+                        <label class="param-label" for="show-data">Expt:</label>
+                        <input class="param-input" type="checkbox" id="show-data" name="show-data" checked />
+                    </fieldset>
                 </form>
                 <form>
-                    <label class="param-label" for="show-plot1">Pred 1:</label>
-                    <input class="param-input" type="checkbox" id="show-plot1" name="show-plot1" checked />
-                    <label class="param-label" for="show-plot1-ci">Pred 1 CI:</label>
-                    <input class="param-input" type="checkbox" id="show-plot1-ci" name="show-plot1-ci" checked />
+                    <fieldset style="padding: 0;">
+                        <label class="param-label" for="show-plot1">Pred 1:</label>
+                        <input class="param-input" type="checkbox" id="show-plot1" name="show-plot1" checked />
+                        <label class="param-label" for="show-plot1-ci">Pred 1 CI:</label>
+                        <input class="param-input" type="checkbox" id="show-plot1-ci" name="show-plot1-ci" checked />
+                    </fieldset>
                 </form>
                 <form>
-                    <label class="param-label" for="show-plot2">Pred 2:</label>
-                    <input class="param-input" type="checkbox" id="show-plot2" name="show-plot2" checked />
-                    <label class="param-label" for="show-plot2-ci">Pred 2 CI:</label>
-                    <input class="param-input" type="checkbox" id="show-plot2-ci" name="show-plot2-ci" checked />
+                    <fieldset style="padding: 0;">
+                        <label class="param-label" for="show-plot2">Pred 2:</label>
+                        <input class="param-input" type="checkbox" id="show-plot2" name="show-plot2" checked />
+                        <label class="param-label" for="show-plot2-ci">Pred 2 CI:</label>
+                        <input class="param-input" type="checkbox" id="show-plot2-ci" name="show-plot2-ci" checked />
+                    </fieldset>
                 </form>
-            </article>    
+            </fieldset>    
         <div class="button-container">
             <button type="button" class="selection-button" id="predict-mat-prop">Predict Hardness and Conductivity</button>
         </div>
